@@ -17,11 +17,14 @@ def get_data_from_toloka():
             for cell in row:
                 if cell.column_letter == 'F':
                     if cell.value is not None:
-                        if cell.value.isdigit():
-                            cur_id = cell.value
+                        if type(cell.value) is int:
+                            cur_id = str(cell.value)
                             new_id = True
-                        else:
-                            if cur_id is not None:
+                        elif type(cell.value) is str:
+                            if cell.value.isdigit():
+                                cur_id = cell.value
+                                new_id = True
+                            elif cur_id is not None:
                                 data += get_formated_str(cur_id, cell.value) + '\n'
                     elif new_id:
                         new_id = False
