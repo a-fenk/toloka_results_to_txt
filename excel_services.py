@@ -17,8 +17,9 @@ def get_data_from_toloka():
             for cell in row:
                 if cell.column_letter == 'F':
                     if cell.value is not None:
-                        if type(cell.value) is int:
-                            cur_id = str(cell.value)
+                        print(cell.value, type(cell.value))
+                        if type(cell.value) in [int, float]:
+                            cur_id = str(int(cell.value))
                             new_id = True
                         elif type(cell.value) is str:
                             if cell.value.isdigit():
